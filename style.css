@@ -96,3 +96,15 @@ a:hover {
 a:active {
     text-decoration: underline;
 }
+
+.gamecontent {
+	
+}
+
+.flash-content {
+	position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+}
