@@ -47,3 +47,52 @@ body {
 .copyright {
 	text-align: right;
 }
+
+.image-grid {
+  overflow: hidden;
+  margin: 20px 0;
+  padding-left: 55px;
+}
+
+.image-grid li {
+  display: block;
+  width: 128px;
+  height: 128px;
+  margin: 10px;
+  float: left;
+  border-radius: 15px;
+  border: 2px solid #8AC007;
+  padding: 3px;
+  text-align: center;
+  padding-top: 6px;
+}
+
+.image-grid li img {
+  border-radius: 5px;
+  border: 1px solid #aaaaaa;
+  
+}
+
+.image-grid span {
+  display: none;
+}
+
+a {
+	color: #777777;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+a:active {
+    text-decoration: underline;
+}
