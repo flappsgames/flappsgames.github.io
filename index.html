@@ -16,13 +16,13 @@
 		<script src="scripts/jquery.unveil.js"></script>
 		<script id="entry-template" type="text/x-handlebars-template">
 	  {{#each game}}
-	  <li data-id="id-{{id}}" data-type="{{category}}">
-		<img src="{{thumbnail}}"><br>
-		<a href="{{id}}/index.html" data-type="name">{{ title }}</a><br>
-		<span data-type="gameplays">{{gameplays}}</span>
-		<span data-type="rating">{{rating}}</span>
-		<span data-type="developer_name">{{developer_name}}</span>
-		<span data-type="launch_date">{{launch_date}}</span>
+	  <li data-id="id-{{id}}" data-type="{{cat}}">
+		<img src="images/loader.gif" data-src="{{th}}"><br>
+		<a href="{{id}}/index.html" data-type="name">{{t}}</a><br>
+		<span data-type="gameplays">{{g}}</span>
+		<span data-type="rating">{{r}}</span>
+		<span data-type="developer_name">{{dn}}</span>
+		<span data-type="launch_date">{{ld}}</span>
 	  </li>
 	  {{/each}}
 		</script>
@@ -32,16 +32,27 @@
 		
 		function renderData(data) {
 			var html = template(data);
-			$('#games').html(html);
+			$('#games').append(html);
 			$("img").unveil();
 		}
 
 		var gamedata;
 		function loadData() {
-			if(!gamedata) {
-				$.getJSON( "data.json", function( data ) {
-					gamedata = data;
-					renderData(gamedata);
+			if(!gamedata) 
+			{
+				gamedata = {game: []};
+				$.getJSON( "data0.json", function( data ) {				
+					gamedata.game = gamedata.game.concat(data.game);					
+					renderData(data);
+					
+					setTimeout(function(){ 
+						for(var i = 1; i < data.pages; i++) {
+							$.getJSON( "data" + i + ".json", function( d ) {				
+								gamedata.game = gamedata.game.concat(d.game);					
+								renderData(d);
+							});
+						}
+					}, 3000);
 				});
 			}
 			else {
